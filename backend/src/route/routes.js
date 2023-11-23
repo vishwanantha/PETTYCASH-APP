@@ -1,30 +1,10 @@
 import express from 'express'
-import Categories from '../model/login.js'
-
+import createcontroll from '../conroller/controller.js'
+import getcontroll from '../conroller/controller.js'
 const router=express.Router()
 
-router.get('/reg',async(req,res)=>{
 
-
-   return res.json({Message:"user"})
-})
-router.post('/create',(req,res)=>{
-    Categories.create({
-        type: "Investment",
-        color: "#FCBE44"
-
-    }).then(result=>{
-        return res.json(result)
-
-    }).catch(err=>console.log(err))
-
-})
-router.get('/get',(req,res)=>{
-    Categories.find({})
-  
-    .then(result=>{
-        return res.json(result)
-    }).catch(err=>res.json(err))
-})
+router.post('/',createcontroll.create)
+.get('/',getcontroll.get)
 export default router
 

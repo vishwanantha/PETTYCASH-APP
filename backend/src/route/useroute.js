@@ -1,37 +1,15 @@
 import express from 'express'
-import userModel from '../model/user.js'
-const route =express.Router()
+import transcontroll from '../conroller/trans.js'
+const router =express.Router()
 
-route.post('/post',(req,res)=>{
-    userModel.create({
-    
-    name:req.body.name,
-    type:req.body.type,
-    amount:req.body.amount,
-    date: req.body.date 
-
-    }).then(result=>{
-        return res.json(result)
-
-    }).catch(err=>console.log(err))
-
-})
-route.get('/tra',(req,res)=>{
-    userModel.find({})
-    .then(r=>{
-        return res.json(r)
-    }).catch(err=>res.json(err))
-})
-route.delete('/tra/trans',(req,res)=>{
-    userModel.deleteOne({})
-    .then(re=>{
-        return res.json(re)
-    }).catch(err=>res.json(err))
-})
+router.post('/',transcontroll.trans).get('/',transcontroll.gettran).delete('/',transcontroll.delettran)
+.get('/label',transcontroll.total)
+//
+//
 
    
 
-export default route
+export default router
 
 
 
